@@ -13,7 +13,7 @@ FraudLens analyzes digital payment transactions in real-time, identifies suspici
 
 ---
 
-> **Don't just tell users that a transaction is risky. Explain WHY it is risky and WHAT they should do next.**
+> **Don't just tell users that a transaction is risky. Explain WHY it is risky and WHAT they should do next..**
 
 ---
 
