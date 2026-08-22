@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PayGuard — Analyze Payment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style2.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+ <header class="navbar">
+  <div class="logo">
+    <strong>PayGuard</strong> <span class="badge">v2.4</span>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="index2.html" class="stimulate">Simulator</a>
+    <a href="index3.html">Results</a>
+    <a href="index4.html">Audit Log</a>
+  </nav>
+  <div class="user-profile">
+    <input type="text" placeholder="Search transactions..." class="search-input">
+    <div class="avatar">A</div>
+  </div>
+</header>
+
+
+
+    <div class="breadcrumb">Dashboard &gt; <span>Analyze Payment</span></div>
+    
+    <header class="page-head">
+      <div>
+        <h1>Payment Simulator</h1>
+        <p>Fill in transaction details or pick a demo scenario to test the detection engine.</p>
+      </div>
+      <div class="steps">
+        <span class="step done">✓ Setup</span>
+        <span class="step active">2 Input Data</span>
+        <span class="step">3 Results</span>
+      </div>
+    </header>
+
+    <!-- Content Grid -->
+    <div class="layout-grid">
+      
+      <!-- Left Column: Demo Scenarios & Risk Preview -->
+      <aside class="sidebar">
+        
+        <!-- Demo Scenarios -->
+        <section class="card">
+          <div class="card-head">
+            <h2>Demo Scenarios</h2>
+            <p>Select to auto-fill all fields</p>
+          </div>
+          <div class="scenario-list">
+            <button class="scenario-btn low" type="button">
+              <span class="sc-icon">✓</span>
+              <div class="sc-text">
+                <strong>Normal Purchase</strong>
+                <small>Everyday retail, known device</small>
+              </div>
+              <span class="chip low">Low</span>
+            </button>
+
+            <button class="scenario-btn medium" type="button">
+              <span class="sc-icon">💲</span>
+              <div class="sc-text">
+                <strong>High-Value Wire</strong>
+                <small>Large international transfer</small>
+              </div>
+              <span class="chip medium">Medium</span>
+            </button>
+
+            <button class="scenario-btn high" type="button">
+              <span class="sc-icon">🌐</span>
+              <div class="sc-text">
+                <strong>Geo Anomaly</strong>
+                <small>400 km away from last location</small>
+              </div>
+              <span class="chip high">High</span>
+            </button>
+
+            <button class="scenario-btn crit" type="button">
+              <span class="sc-icon">🔒</span>
+              <div class="sc-text">
+                <strong>Brute Force</strong>
+                <small>Failed PINs, Tor exit node</small>
+              </div>
+              <span class="chip crit">Critical</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Risk Gauge Preview -->
+        <section class="card risk-preview">
+          <div class="preview-head">
+            <h3>Risk Preview</h3>
+            <span class="live-tag"><span class="dot"></span> Live estimate</span>
+          </div>
+
+          <div class="gauge">
+            <svg viewBox="0 0 160 90">
+              <path d="M 16 88 A 64 64 0 0 1 144 88" fill="none" stroke="#E4EAF2" stroke-width="10" stroke-linecap="round"/>
+              <path d="M 16 88 A 64 64 0 0 1 144 88" fill="none" stroke="#10B981" stroke-width="10" stroke-linecap="round" stroke-dasharray="201" stroke-dashoffset="180"/>
+              <line x1="80" y1="88" x2="80" y2="32" stroke="#0F1923" stroke-width="2" transform="rotate(-80,80,88)"/>
+              <circle cx="80" cy="88" r="4" fill="#0F1923"/>
+            </svg>
+          </div>
+
+          <div class="score-display">
+            <span class="score-num">4</span>
+            <span class="score-total">/ 100 Risk Score</span>
+          </div>
+
+          <div class="verdict safe">Likely Safe — proceed with caution</div>
+
+          <ul class="signals">
+            <li class="signal ok">✓ Known device fingerprint</li>
+            <li class="signal ok">✓ Amount within normal range</li>
+            <li class="signal ok">✓ No prior failed attempts</li>
+          </ul>
+        </section>
+
+      </aside>
+
+      <!-- Right Column: Input Form -->
+      <section class="main-content">
+        <form class="card" id="payment-form">
+          <div class="card-head form-head">
+            <span class="form-icon">💳</span>
+            <div>
+              <h2>Transaction Details</h2>
+              <p>Core payment identifiers and value</p>
+            </div>
+          </div>
+          
+          <div class="card-body">
+            
+            <!-- Row 1: Amount & Beneficiary ID -->
+            <div class="form-row">
+              <div class="field-group">
+                <label for="amount">Amount <span class="req">*</span></label>
+                <div class="input-wrap">
+                  <span class="prefix">$</span>
+                  <input type="number" id="amount" placeholder="0.00" step="0.01" required>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="beneficiary">Beneficiary ID <span class="req">*</span></label>
+                <input type="text" id="beneficiary" class="mono" placeholder="ACC-89210-X" required>
+              </div>
+            </div>
+
+            <!-- Row 2: Time & Failed Attempts -->
+            <div class="form-row">
+              <div class="field-group">
+                <label for="timestamp">Transaction Time <span class="req">*</span></label>
+                <input type="datetime-local" id="timestamp" required>
+              </div>
+
+              <div class="field-group">
+                <label for="failed-attempts">Failed Attempts <span class="req">*</span></label>
+                <div class="counter-wrap">
+                  <button type="button" class="counter-btn" onclick="adjustCount(-1)">-</button>
+                  <input type="number" id="failed-attempts" value="0" min="0" max="10" readonly>
+                  <button type="button" class="counter-btn" onclick="adjustCount(1)">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3: Device Context -->
+            <div class="field-group full-width">
+              <label>Device Context <span class="req">*</span></label>
+              <div class="device-grid">
+                <label class="device-card active">
+                  <input type="radio" name="device" value="known" checked>
+                  <span class="device-icon">💻</span>
+                  <div>
+                    <strong>Known Device</strong>
+                    <small>Primary Laptop (macOS)</small>
+                  </div>
+                </label>
+
+                <label class="device-card">
+                  <input type="radio" name="device" value="new">
+                  <span class="device-icon">📱</span>
+                  <div>
+                    <strong>New Device</strong>
+                    <small>Unrecognized Browser</small>
+                  </div>
+                </label>
+
+                <label class="device-card">
+                  <input type="radio" name="device" value="vpn">
+                  <span class="device-icon">🌐</span>
+                  <div>
+                    <strong>VPN / Proxy</strong>
+                    <small>Masked IP Address</small>
+                  </div>
+                </label>
+
+                <label class="device-card">
+                  <input type="radio" name="device" value="tor">
+                  <span class="device-icon">🧅</span>
+                  <div>
+                    <strong>Tor Exit Node</strong>
+                    <small>Anonymized Network</small>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Form Actions Footer -->
+          <div class="card-footer">
+            <button type="reset" class="btn-secondary">Reset</button>
+            <button type="submit" class="btn-primary" id="submit-btn">
+              <span>Run Detection Engine</span>
+              <span class="spinner" id="btn-spinner"></span>
+            </button>
+          </div>
+
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="js/screen2.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PayGuard — Risk Analysis Results</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style3.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+ <header class="navbar">
+  <div class="logo">
+    <strong>PayGuard</strong> <span class="badge">v2.4</span>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="index2.html">Simulator</a>
+    <a href="index3.html">Results</a>
+    <a href="index4.html">Audit Log</a>
+  </nav>
+  <div class="user-profile">
+    <input type="text" placeholder="Search transactions..." class="search-input">
+    <div class="avatar">A</div>
+  </div>
+</header>
+
+  <main class="page">
+    <!-- Breadcrumb & Header -->
+    <div class="breadcrumb">Dashboard &gt; Analyze Payment &gt; <span>Results</span></div>
+    
+    <header class="page-head">
+      <div>
+        <h1>Analysis Results</h1>
+        <p>Engine evaluation completed in 142ms. Transaction flag details below.</p>
+      </div>
+      <div class="steps">
+        <span class="step done">✓ Setup</span>
+        <span class="step done">✓ Input Data</span>
+        <span class="step active">3 Results</span>
+      </div>
+    </header>
+
+    <!-- Main Results Container -->
+    <div class="results-container">
+      
+      <!-- Top Verdict Banner -->
+      <section class="card verdict-card high-risk">
+        <div class="verdict-main">
+          <div class="verdict-info">
+            <span class="action-badge block">ACTION: BLOCK</span>
+            <h2>High Risk Detected</h2>
+            <p>Transaction exceeds acceptable security thresholds and has been automatically flagged.</p>
+          </div>
+          <div class="score-container">
+            <div class="score-circle">
+              <span class="score-num">88</span>
+              <span class="score-max">/ 100</span>
+            </div>
+            <span class="score-label">Risk Rating</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Two-Column Breakdown -->
+      <div class="results-grid">
+        
+        <!-- Left Column: Triggered Rules -->
+        <section class="card">
+          <div class="card-head">
+            <h3>Triggered Risk Rules</h3>
+            <p>3 rules contributed to the total risk score</p>
+          </div>
+          <div class="card-body">
+            <ul class="rule-list">
+              
+              <li class="rule-item high">
+                <div class="rule-details">
+                  <div class="rule-title-row">
+                    <strong>Impossible Travel Velocity</strong>
+                    <span class="severity-tag high">High Severity</span>
+                  </div>
+                  <p>Location changed by 400km within 12 minutes of previous transaction.</p>
+                </div>
+                <div class="rule-score">+45 pts</div>
+              </li>
+
+              <li class="rule-item medium">
+                <div class="rule-details">
+                  <div class="rule-title-row">
+                    <strong>Tor Exit Node Detected</strong>
+                    <span class="severity-tag medium">Medium Severity</span>
+                  </div>
+                  <p>IP address matches known privacy proxy/anonymizer network.</p>
+                </div>
+                <div class="rule-score">+30 pts</div>
+              </li>
+
+              <li class="rule-item low">
+                <div class="rule-details">
+                  <div class="rule-title-row">
+                    <strong>Multiple Failed Attempts</strong>
+                    <span class="severity-tag low">Low Severity</span>
+                  </div>
+                  <p>3 consecutive failed authentication attempts in the last 1 hour.</p>
+                </div>
+                <div class="rule-score">+13 pts</div>
+              </li>
+
+            </ul>
+          </div>
+        </section>
+
+        <!-- Right Column: Submitted Transaction Data -->
+        <section class="card">
+          <div class="card-head">
+            <h3>Transaction Summary</h3>
+            <p>Evaluated input parameters</p>
+          </div>
+          <div class="card-body">
+            <dl class="summary-list">
+              <div class="summary-row">
+                <dt>Transaction Amount</dt>
+                <dd class="mono">$14,250.00 USD</dd>
+              </div>
+              <div class="summary-row">
+                <dt>Beneficiary ID</dt>
+                <dd class="mono">ACC-89210-X</dd>
+              </div>
+              <div class="summary-row">
+                <dt>Transaction Time</dt>
+                <dd>Today, 11:42:05 AM</dd>
+              </div>
+              <div class="summary-row">
+                <dt>Device Context</dt>
+                <dd>Tor Exit Node (Masked IP)</dd>
+              </div>
+              <div class="summary-row">
+                <dt>Failed PIN Attempts</dt>
+                <dd class="mono">3</dd>
+              </div>
+            </dl>
+
+            <div class="raw-data-box">
+              <div class="raw-data-head">
+                <span>Raw Payload API Response</span>
+                <span class="latency">142ms</span>
+              </div>
+              <pre><code>{
+  "transaction_id": "tx_99218401",
+  "score": 88,
+  "action": "BLOCK",
+  "rules_triggered": 3
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Action Footer -->
+      <footer class="results-footer">
+        <a href="index.html" class="btn-secondary">← Back to Simulator</a>
+        <button type="button" class="btn-primary">Export Report (PDF)</button>
+      </footer>
+
+    </div>
+  </main>
+  <script src="js/screen3.js"></script>
+
+
+</body>
+</html>

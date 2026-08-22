@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PayGuard — Audit Log</title>
+  <link rel="stylesheet" href="css/style4.css" />
+</head>
+<body>
+
+  <header class="navbar">
+  <div class="logo">
+    <strong>PayGuard</strong> <span class="badge">v2.4</span>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="index2.html">Simulator</a>
+    <a href="index3.html">Results</a>
+    <a href="index4.html">Audit Log</a>
+  </nav>
+  <div class="user-profile">
+    <input type="text" placeholder="Search transactions..." class="search-input">
+    <div class="avatar">A</div>
+  </div>
+</header>
+  <main class="container">
+    <header class="header-section">
+      <div>
+        <h1>Audit Log</h1>
+        <p class="subtitle">Review and inspect historically evaluated payment transactions</p>
+      </div>
+      <button class="btn-primary">Export CSV</button>
+    </header>
+
+    <!-- Filters Bar -->
+    <div class="card filter-bar">
+      <div class="filter-group">
+        <label class="card-title">Filter by Risk</label>
+        <select class="filter-select">
+          <option value="all">All Risk Levels</option>
+          <option value="high">High Risk (71-100)</option>
+          <option value="medium">Medium Risk (31-70)</option>
+          <option value="low">Low Risk (0-30)</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="card-title">Date Range</label>
+        <input type="date" class="search-input" value="2026-08-22">
+      </div>
+      <div class="filter-group">
+        <label class="card-title">Search ID / Beneficiary</label>
+        <input type="text" class="search-input" placeholder="e.g. ACC-89210-X">
+      </div>
+    </div>
+
+    <!-- Data Table Card -->
+    <div class="card table-card">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Date & Time</th>
+            <th>Txn ID</th>
+            <th>Amount</th>
+            <th>Beneficiary</th>
+            <th>Risk Level</th>
+            <th>Score</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Row 1 (Expanded State Example) -->
+          <tr class="table-row expanded" onclick="this.classList.toggle('expanded')">
+            <td>Aug 22, 2026 11:42</td>
+            <td><code>tx_99218401</code></td>
+            <td><strong>$14,250.00</strong></td>
+            <td>ACC-89210-X</td>
+            <td><span class="status blocked">High Risk</span></td>
+            <td><strong class="score-high">88</strong></td>
+            <td class="chevron-cell">▼</td>
+          </tr>
+          <tr class="details-row">
+            <td colspan="7">
+              <div class="details-content">
+                <strong>Triggered Risk Reasons:</strong>
+                <ul class="reason-tags">
+                  <li><span class="reason-bullet"></span>Impossible Travel Velocity (+45 pts)</li>
+                  <li><span class="reason-bullet"></span>Tor Exit Node Detected (+30 pts)</li>
+                  <li><span class="reason-bullet"></span>Multiple Failed Attempts (+13 pts)</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Row 2 -->
+          <tr class="table-row" onclick="this.classList.toggle('expanded')">
+            <td>Aug 22, 2026 10:15</td>
+            <td><code>tx_99218400</code></td>
+            <td><strong>$3,400.00</strong></td>
+            <td>ACC-44912-B</td>
+            <td><span class="status review">Medium Risk</span></td>
+            <td><strong class="score-mid">54</strong></td>
+            <td class="chevron-cell">▼</td>
+          </tr>
+          <tr class="details-row">
+            <td colspan="7">
+              <div class="details-content">
+                <strong>Triggered Risk Reasons:</strong>
+                <ul class="reason-tags">
+                  <li><span class="reason-bullet"></span>Unusual Hour Transaction (+34 pts)</li>
+                  <li><span class="reason-bullet"></span>New Device Signature (+20 pts)</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Row 3 -->
+          <tr class="table-row" onclick="this.classList.toggle('expanded')">
+            <td>Aug 22, 2026 09:30</td>
+            <td><code>tx_99218399</code></td>
+            <td><strong>$120.50</strong></td>
+            <td>ACC-11029-A</td>
+            <td><span class="status safe">Low Risk</span></td>
+            <td><strong class="score-low">12</strong></td>
+            <td class="chevron-cell">▼</td>
+          </tr>
+          <tr class="details-row">
+            <td colspan="7">
+              <div class="details-content">
+                <strong>Triggered Risk Reasons:</strong>
+                <ul class="reason-tags">
+                  <li><span class="reason-bullet"></span>Standard Activity Pattern (+12 pts)</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script src="js/screen4.js"></script>
+
+
+</body>
+</html>

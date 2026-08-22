@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PayGuard Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="navbar">
+  <div class="logo">
+    <strong>PayGuard</strong> <span class="badge">v2.4</span>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="index2.html">Simulator</a>
+    <a href="index3.html">Results</a>
+    <a href="index4.html">Audit Log</a>
+  </nav>
+  <div class="user-profile">
+    <input type="text" placeholder="Search transactions..." class="search-input">
+    <div class="avatar">A</div>
+  </div>
+</header>
+
+  <main class="container">
+    
+    <!-- Title Section -->
+    <section class="header-section">
+      <div>
+        <h2>Threat Overview</h2>
+        <p class="subtitle">All systems operational</p>
+      </div>
+      <button class="btn-primary">Analyze New Payment</button>
+    </section>
+
+    <!-- 4 Stats Cards Grid -->
+    <section class="grid-4">
+      <div class="card">
+        <p class="card-title">Total Scanned</p>
+        <h3>248,391</h3>
+        <span class="tag green">+12.4%</span>
+      </div>
+      <div class="card">
+        <p class="card-title">Threats Blocked</p>
+        <h3>1,247</h3>
+        <span class="tag red">+8.1%</span>
+      </div>
+      <div class="card">
+        <p class="card-title">Safe Transactions</p>
+        <h3>247,144</h3>
+        <span class="tag green">+0.02%</span>
+      </div>
+      <div class="card">
+        <p class="card-title">Avg. Risk Score</p>
+        <h3>2.3 / 10</h3>
+        <span class="tag blue">-0.4 pts</span>
+      </div>
+    </section>
+
+    <!-- Main Content Split (Chart + Breakdown) -->
+    <section class="grid-main">
+      <div class="card chart-card">
+        <h3>Scan Activity</h3>
+        <p class="subtitle">Transactions vs. threats over time</p>
+        <div class="chart-placeholder">[ Chart Visualization Placeholder ]</div>
+      </div>
+      <div class="card breakdown-card">
+        <h3>Threat Breakdown</h3>
+        <ul class="breakdown-list">
+          <li>Card Not Present <span>412</span></li>
+          <li>Identity Fraud <span>287</span></li>
+          <li>Suspicious Geo <span>264</span></li>
+          <li>Velocity Abuse <span>189</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Table Section -->
+    <section class="card table-card">
+      <h3>Recent Transactions</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Transaction ID</th>
+            <th>Merchant</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TXN-8821-KC</td>
+            <td>Amazon Web Services</td>
+            <td>$3,280.00</td>
+            <td><span class="status safe">Safe</span></td>
+          </tr>
+          <tr>
+            <td>TXN-8820-FF</td>
+            <td>Unknown Merchant</td>
+            <td>$947.50</td>
+            <td><span class="status blocked">Blocked</span></td>
+          </tr>
+          <tr>
+            <td>TXN-8819-QP</td>
+            <td>Stripe Inc.</td>
+            <td>$12,000.00</td>
+            <td><span class="status review">Review</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Bottom Banner -->
+    <section class="banner">
+      <div>
+        <h3>Spot suspicious payments before they become losses.</h3>
+        <p>Submit any transaction for instant AI-powered risk analysis.</p>
+      </div>
+      <button class="btn-light">Analyze New Payment</button>
+    </section>
+
+  </main>
+  <script src="js/screen1.js"></script>
+
+
+</body>
+</html>
