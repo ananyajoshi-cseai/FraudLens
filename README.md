@@ -271,7 +271,7 @@ Our testing strategy includes:
 *   **Dashboard:** `[ADD SCREENSHOT]`
 *   **Analyze Payment:** `[ADD SCREENSHOT]`
 *   **Risk Result:** `[ADD SCREENSHOT]`
-*   **Transaction History:** `[ADD SCREENSHOT]`
+*   **Transaction History:** 
 
 ---
 
