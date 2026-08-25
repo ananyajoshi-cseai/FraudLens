@@ -34,13 +34,13 @@ function setupFormSubmit() {
     var selectedDevice = document.querySelector('input[name="device"]:checked').value;
     
     var payload = {
-      user_id: "1001",
+      user_id: "U1001",
       amount: parseFloat(document.getElementById('amount').value),
       beneficiary_id: document.getElementById('beneficiary').value,
       beneficiary_name: "Test Beneficiary",
       transaction_hour: 12,
       device_id: selectedDevice,
-      failed_attempts_last_hour: parseInt(document.getElementById('failed-attempts').value)
+      failed_attempts: parseInt(document.getElementById('failed-attempts').value)
     };
 
     // Send payload to Ananya's API
@@ -57,7 +57,7 @@ function setupFormSubmit() {
       sessionStorage.setItem('analysisResult', JSON.stringify(resultData));
 
       // Navigate to Screen 3 (Results)
-      window.location.href = 'index3.html';
+      window.location.href = '/screen3';
     })
     .catch(function (error) {
       alert('Error analyzing transaction!');

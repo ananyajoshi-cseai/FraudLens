@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Read saved data from browser storage
   var savedData = sessionStorage.getItem('analysisResult');
 
   if (!savedData) {
@@ -7,37 +6,127 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
-  // Convert JSON text string back into a JavaScript Object
   var result = JSON.parse(savedData);
 
-  // 1. Update Score and Verdict
+  // =========================
+  // 1. UPDATE SCORE & VERDICT
+  // =========================
+
   document.querySelector('.score-num').textContent = result.risk_score;
-  document.querySelector('.action-badge').textContent = 'ACTION: ' + result.risk_level;
-  document.querySelector('.verdict-info h2').textContent = result.risk_level + ' Risk Detected';
 
-  // 2. Build Triggered Risk Rules List
-  var ruleList = document.querySelector('.rule-list');
-  ruleList.innerHTML = ''; // Clear default HTML placeholders
+  document.querySelector('.action-badge').textContent =
+    'ACTION: ' + result.recommended_action.toUpperCase();
 
-  for (var i = 0; i < result.reasons.length; i++) {
-    var reason = result.reasons[i];
+  document.querySelector('.verdict-info h2').textContent =
+    result.risk_level + ' Risk Detected';
 
-    var li = document.createElement('li');
-    li.className = 'rule-item high';
 
-    li.innerHTML = 
-      '<div class="rule-details">' +
-        '<strong>' + reason.signal + '</strong>' +
-        '<p>' + reason.message + '</p>' +
-      '</div>' +
-      '<div class="rule-score">+' + reason.impact + ' pts</div>';
+  // =========================
+  // 2. UPDATE RULE COUNT
+  // =========================
 
-    ruleList.appendChild(li);
+  var ruleCount = document.querySelector('.rule-count');
+
+  if (ruleCount) {
+    ruleCount.textContent =
+      result.reasons.length + ' rules contributed to the total risk score';
   }
 
-  // 3. Update Raw API JSON Box
+
+  // =========================
+  // 3. BUILD RISK RULE LIST
+  // =========================
+
+  var ruleList = document.querySelector('.rule-list');
+
+  if (ruleList) {
+    ruleList.innerHTML = '';
+
+    for (var i = 0; i < result.reasons.length; i++) {
+
+      var reason = result.reasons[i];
+
+      var li = document.createElement('li');
+      li.className = 'rule-item ' + result.risk_level.toLowerCase();
+
+      li.innerHTML =
+        '<div class="rule-details">' +
+          '<strong>' + reason.signal + '</strong>' +
+          '<p>' + reason.message + '</p>' +
+        '</div>' +
+        '<div class="rule-score">+' + reason.impact + ' pts</div>';
+
+      ruleList.appendChild(li);
+    }
+  }
+
+
+  // =========================
+  // 4. UPDATE TRANSACTION DATA
+  // =========================
+
+  var transaction = result.transaction;
+
+  if (transaction) {
+
+    // Amount
+    var amountElement = document.querySelector('.transaction-amount');
+
+    if (amountElement) {
+      amountElement.textContent =
+        '₹' + Number(transaction.amount).toLocaleString('en-IN');
+    }
+
+
+    // Beneficiary
+    var beneficiaryElement =
+      document.querySelector('.transaction-beneficiary');
+
+    if (beneficiaryElement) {
+      beneficiaryElement.textContent =
+        transaction.beneficiary_id;
+    }
+
+
+    // Transaction time
+    var timeElement =
+      document.querySelector('.transaction-time');
+
+    if (timeElement) {
+      timeElement.textContent =
+        transaction.transaction_hour + ':00';
+    }
+
+
+    // Device
+    var deviceElement =
+      document.querySelector('.transaction-device');
+
+    if (deviceElement) {
+      deviceElement.textContent =
+        transaction.device_id;
+    }
+
+
+    // Failed attempts
+    var failedAttemptsElement =
+      document.querySelector('.transaction-failed');
+
+    if (failedAttemptsElement) {
+      failedAttemptsElement.textContent =
+        transaction.failed_attempts;
+    }
+  }
+
+
+  // =========================
+  // 5. UPDATE RAW API RESPONSE
+  // =========================
+
   var codeBox = document.querySelector('pre code');
+
   if (codeBox) {
-    codeBox.textContent = JSON.stringify(result, null, 2);
+    codeBox.textContent =
+      JSON.stringify(result, null, 2);
   }
 });

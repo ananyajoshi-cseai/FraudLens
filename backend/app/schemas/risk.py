@@ -8,7 +8,18 @@ class RiskReason(BaseModel):
     message: str
 
 
+class TransactionData(BaseModel):
+    user_id: str
+    amount: float
+    beneficiary_id: str
+    beneficiary_name: str
+    transaction_hour: int
+    device_id: str
+    failed_attempts: int
+
+
 class RiskResponse(BaseModel):
+    transaction: TransactionData
     risk_score: int
     risk_level: str
     reasons: List[RiskReason]

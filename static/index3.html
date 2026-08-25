@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style3.css" />
+  <link rel="stylesheet" href="/static/css/style3.css">
 </head>
 <body>
 
@@ -17,10 +17,10 @@
     <strong>PayGuard</strong> <span class="badge">v2.4</span>
   </div>
   <nav class="nav-links">
-    <a href="index.html" class="active">Dashboard</a>
-    <a href="index2.html">Simulator</a>
-    <a href="index3.html">Results</a>
-    <a href="index4.html">Audit Log</a>
+    <a href="/">Dashboard</a>
+    <a href="/screen2">Simulator</a>
+    <a href="/screen3">Results</a>
+    <a href="/screen4">Audit Log</a>
   </nav>
   <div class="user-profile">
     <input type="text" placeholder="Search transactions..." class="search-input">
@@ -72,7 +72,7 @@
         <section class="card">
           <div class="card-head">
             <h3>Triggered Risk Rules</h3>
-            <p>3 rules contributed to the total risk score</p>
+            <p class="rule-count">0 rules contributed to the total risk score</p>
           </div>
           <div class="card-body">
             <ul class="rule-list">
@@ -124,23 +124,23 @@
             <dl class="summary-list">
               <div class="summary-row">
                 <dt>Transaction Amount</dt>
-                <dd class="mono">$14,250.00 USD</dd>
+                <dd class="mono transaction-amount">₹0</dd>
               </div>
               <div class="summary-row">
                 <dt>Beneficiary ID</dt>
-                <dd class="mono">ACC-89210-X</dd>
+                <dd class="mono transaction-beneficiary">—</dd>
               </div>
               <div class="summary-row">
                 <dt>Transaction Time</dt>
-                <dd>Today, 11:42:05 AM</dd>
+                <dd class="transaction-time">—</dd>
               </div>
               <div class="summary-row">
                 <dt>Device Context</dt>
-                <dd>Tor Exit Node (Masked IP)</dd>
+                <dd class="transaction-device">—</dd>
               </div>
               <div class="summary-row">
                 <dt>Failed PIN Attempts</dt>
-                <dd class="mono">3</dd>
+                <dd class="mono transaction-failed">0</dd>
               </div>
             </dl>
 
@@ -163,13 +163,13 @@
 
       <!-- Action Footer -->
       <footer class="results-footer">
-        <a href="index.html" class="btn-secondary">← Back to Simulator</a>
+        <a href="/screen2" class="btn-secondary">← Back to Simulator</a>
         <button type="button" class="btn-primary">Export Report (PDF)</button>
       </footer>
 
     </div>
   </main>
-  <script src="js/screen3.js"></script>
+  <script src="/static/js/screen3.js"></script>
 
 
 </body>

@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from app.schemas.transaction import TransactionRequest
 from app.schemas.profile import UserProfile
-from app.schemas.risk import RiskResponse
+from app.schemas.risk import RiskResponse, TransactionData
 
 from app.services.risk_engine import calculate_risk
 from app.services.explanation_engine import generate_explanations
@@ -49,8 +49,17 @@ def analyze_transaction(transaction: TransactionRequest):
 
     # 4. Return final response
     return RiskResponse(
-        risk_score=risk_result["risk_score"],
-        risk_level=risk_result["risk_level"],
-        reasons=reasons,
-        recommended_action=recommended_action
-    )
+    transaction=TransactionData(
+        user_id=transaction.user_id,
+        amount=transaction.amount,
+        beneficiary_id=transaction.beneficiary_id,
+        beneficiary_name=transaction.beneficiary_name,
+        transaction_hour=transaction.transaction_hour,
+        device_id=transaction.device_id,
+        failed_attempts=transaction.failed_attempts
+    ),
+    risk_score=risk_result["risk_score"],
+    risk_level=risk_result["risk_level"],
+    reasons=reasons,
+    recommended_action=recommended_action
+)
