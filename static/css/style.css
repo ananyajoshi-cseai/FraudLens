@@ -207,3 +207,22 @@ th, td { text-align: left; padding: 10px; border-bottom: 1px solid var(--border)
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .grid-main { grid-template-columns: 1fr; }
 }
+.cta-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 30px;
+  background: var(--card-bg);
+  border-left: 4px solid var(--primary); /* subtle accent pop */
+}
+
+.cta-content h3 {
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.cta-btn {
+  text-decoration: none;
+  white-space: nowrap;
+}
