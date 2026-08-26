@@ -30,6 +30,7 @@ body {
   color: var(--text-main);
   line-height: 1.6;
   width: 100%;
+  margin: 0 ;
   overflow-x: hidden;
 }
 
@@ -104,13 +105,15 @@ body {
   font-weight: bold;
 }
 
-/* Page Layout Wrapper - Guarantees Breathing Room Off Edges */
 .page {
-  max-width: 1100px;
-  width: 100%;
-  margin: 35px auto 60px auto !important;
+  max-width: none !important; /* Overrides the 1100px constraint */
+  width: 80% !important;
+  margin: 35px auto 60px auto !important; /* Retains top/bottom spacing and centers horizontally */
   padding: 0 24px !important;
 }
+
+
+
 
 .breadcrumb {
   font-size: 13px;
