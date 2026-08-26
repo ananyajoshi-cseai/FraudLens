@@ -11,7 +11,7 @@ function setupScenarioButtons() {
   scenarioButtons[0].addEventListener('click', function () {
     // Normal Purchase (Safe)
     document.getElementById('amount').value = '50.00';
-    document.getElementById('beneficiary').value = 'ACC-11029-A';
+    document.getElementById('beneficiary').value = 'B101';
     document.getElementById('failed-attempts').value = '0';
   });
 
@@ -34,12 +34,12 @@ function setupFormSubmit() {
     var selectedDevice = document.querySelector('input[name="device"]:checked').value;
     
     var payload = {
-      user_id: "U1001",
+      user_id: "test_user_01", // Updated to match MongoDB!
       amount: parseFloat(document.getElementById('amount').value),
       beneficiary_id: document.getElementById('beneficiary').value,
       beneficiary_name: "Test Beneficiary",
       transaction_hour: 12,
-      device_id: selectedDevice,
+      device_id: selectedDevice === "known" ? "DEV-OLD-01" : selectedDevice,
       failed_attempts: parseInt(document.getElementById('failed-attempts').value)
     };
 
