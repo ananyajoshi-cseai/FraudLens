@@ -327,7 +327,7 @@ input[type="text"], input[type="number"], input[type="datetime-local"] {
 }
 
 .input-wrap input { padding-left: 28px; }
-
+input.mono { font-family: monospace; }
 input:focus { border-color: var(--primary); }
 
 .counter-wrap {

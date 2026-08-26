@@ -19,7 +19,7 @@ function loadDashboardData() {
 // Function to put data into the HTML table
 function updateDashboardTable(transactions) {
   var tbody = document.querySelector('tbody');
-  tbody.innerHTML = ''; // Clear out the hardcoded demo rows
+  tbody.innerHTML = ''; 
 
   // Loop through each transaction
   for (var i = 0; i < transactions.length; i++) {
@@ -39,3 +39,29 @@ function updateDashboardTable(transactions) {
     tbody.appendChild(row);
   }
 }
+const scanData = {
+  labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  transactions: [3200, 4100, 3800, 5200, 4600, 6100, 5800],
+  threats: [42, 55, 38, 71, 49, 83, 64]
+};
+
+new Chart(document.getElementById('scanChart'), {
+  type: 'line',
+  data: {
+    labels: scanData.labels,
+    datasets: [
+      {
+        label: 'Transactions',
+        data: scanData.transactions,
+        borderColor: '#1a2b4c',
+        tension: 0.3
+      },
+      {
+        label: 'Threats',
+        data: scanData.threats,
+        borderColor: '#c5221f',
+        tension: 0.3
+      }
+    ]
+  }
+});

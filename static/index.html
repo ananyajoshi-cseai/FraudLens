@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -68,7 +69,8 @@
       <div class="card chart-card">
         <h3>Scan Activity</h3>
         <p class="subtitle">Transactions vs. threats over time</p>
-        <div class="chart-placeholder">[ Chart Visualization Placeholder ]</div>
+       <canvas id="scanChart" height="150"></canvas>
+</div>
       </div>
       <div class="card breakdown-card">
         <h3>Threat Breakdown</h3>
@@ -121,8 +123,10 @@
   <div class="cta-content">
     <h3>Spot suspicious payments before they become losses.</h3>
     <p class="subtitle">Submit any transaction for instant AI-powered risk analysis.</p>
+    
   </div>
   <a href="index2.html" class="btn-primary cta-btn">Analyze New Payment →</a>
+  
 </div>
 
   </main>
