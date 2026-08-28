@@ -28,7 +28,10 @@ def analyze_transaction(
 
     # 1. Fetch user profile from MongoDB
     collection = db["profiles"]
-    user_data = collection.find_one({"user_id": transaction.user_id})
+
+    user_data = collection.find_one({
+        "user_id": transaction.user_id
+    })
 
     if not user_data:
         raise HTTPException(
@@ -47,14 +50,15 @@ def analyze_transaction(
 
     # 3. Check transaction velocity
     velocity_result = check_velocity(
-    db,
-    transaction.user_id
-)
+        db,
+        transaction.user_id
+    )
 
     # 4. Add velocity impact to risk score
     if velocity_result["triggered"]:
         risk_result["risk_score"] += velocity_result["impact"]
 
+    # Keep risk score between 0 and 100
     risk_result["risk_score"] = min(
         risk_result["risk_score"],
         100
@@ -63,8 +67,10 @@ def analyze_transaction(
     # Recalculate risk level after velocity adjustment
     if risk_result["risk_score"] <= 30:
         risk_result["risk_level"] = "LOW"
+
     elif risk_result["risk_score"] <= 60:
         risk_result["risk_level"] = "MEDIUM"
+
     else:
         risk_result["risk_level"] = "HIGH"
 
@@ -123,11 +129,35 @@ def analyze_transaction(
     )
 
 
+@router.get("")
+def get_all_transactions(
+    db: Database = Depends(get_db)
+):
+    """
+    Return all transactions for the dashboard
+    and audit log screens.
+    """
+
+    transactions = list(
+        db["transactions"]
+        .find(
+            {},
+            {"_id": 0}
+        )
+        .sort("timestamp", -1)
+    )
+
+    return transactions
+
+
 @router.get("/{user_id}")
 def get_transaction_history(
     user_id: str,
     db: Database = Depends(get_db)
 ):
+    """
+    Return transaction history for a specific user.
+    """
 
     transactions = list(
         db["transactions"]
