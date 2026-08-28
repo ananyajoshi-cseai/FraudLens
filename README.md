@@ -2,8 +2,9 @@
 
 ### Explainable Real-Time Fraud Risk Detection for Digital Payments
 
-🚧 **Current Status:** MVP implemented; prototype refinement and testing in progress
+🚀 **Current Status:** MVP deployed and live; prototype refinement and testing in progress
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-FraudLens-brightgreen)](https://fraudlens-9glw.onrender.com/)
 [![Hackathon](https://img.shields.io/badge/Hackathon-Build_%24_Bank-blue)](#)
 [![Track 2](https://img.shields.io/badge/Track-Fraud_Detection-red)](#)
 [![Backend](https://img.shields.io/badge/Backend-FastAPI-009688)](#)
@@ -440,21 +441,6 @@ Otherwise, open the relevant HTML page using the frontend serving method configu
 
 > 🚧 **Demo video coming soon.**
 
-### Screenshots
-
-Add screenshots of the following views before final submission:
-
-- **Dashboard**
-- **Analyze Payment**
-- **Risk Result**
-- **Transaction History**
-- **User Profile / Behavioral Context**
-
-Example:
-
-```markdown
-![FraudLens Dashboard](screenshots/dashboard.png)
-```
 
 ---
 
@@ -535,7 +521,7 @@ Extend FraudLens from individual transaction analysis to continuous monitoring o
 
 | Member | Role | Responsibilities |
 |---|---|---|
-| **Ananya** | Backend + GitHub | FastAPI architecture, Risk Engine, MongoDB, API routes & integration, repository management |
+| **Ananya** | Backend + GitHub + Deployment | FastAPI architecture, Risk Engine, MongoDB, API routes & integration, repository management |
 | **Anika** | Frontend | HTML, CSS, JavaScript UI, dashboard components, layout design, and risk-result states |
 | **Adrija** | PPT + Product Story | Slide content, visual story, presentation documentation |
 | **Aashi** | Demo + Support | Demo scenarios, presentation script, recording, and frontend support |
