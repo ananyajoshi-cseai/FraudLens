@@ -39,18 +39,42 @@ app.include_router(transaction_router)
 # -------------------------
 app.mount("/static", StaticFiles(directory="../static"), name="static")
 
+
 @app.get("/")
 def screen_1():
     return FileResponse("../static/index.html")
+
+
+@app.get("/index.html")
+def index_html():
+    return FileResponse("../static/index.html")
+
 
 @app.get("/screen2")
 def screen_2():
     return FileResponse("../static/index2.html")
 
+
+@app.get("/index2.html")
+def index2_html():
+    return FileResponse("../static/index2.html")
+
+
 @app.get("/screen3")
 def screen_3():
     return FileResponse("../static/index3.html")
 
+
+@app.get("/index3.html")
+def index3_html():
+    return FileResponse("../static/index3.html")
+
+
 @app.get("/screen4")
 def screen_4():
+    return FileResponse("../static/index4.html")
+
+
+@app.get("/index4.html")
+def index4_html():
     return FileResponse("../static/index4.html")
