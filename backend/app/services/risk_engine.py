@@ -4,7 +4,8 @@ from app.schemas.profile import UserProfile
 
 def calculate_risk(
     transaction: TransactionRequest,
-    profile: UserProfile
+    profile: UserProfile,
+    velocity_result: dict | None = None
 ) -> dict:
 
     score = 0
@@ -72,6 +73,19 @@ def calculate_risk(
             "message": (
                 f"{transaction.failed_attempts} failed attempts "
                 "were recorded before this transaction."
+            )
+        })
+
+    # 6. Transaction velocity
+    if velocity_result and velocity_result["triggered"]:
+        score += 10
+        signals.append({
+            "signal": "transaction_velocity",
+            "impact": 10,
+            "message": (
+                f"This user has made "
+                f"{velocity_result['count']} transactions within "
+                f"{velocity_result['window_minutes']} minutes."
             )
         })
 

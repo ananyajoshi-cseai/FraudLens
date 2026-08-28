@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 from fastapi import APIRouter, Depends, HTTPException
 from pymongo.database import Database
 
@@ -8,45 +10,102 @@ from app.schemas.risk import RiskResponse, TransactionData
 from app.services.risk_engine import calculate_risk
 from app.services.explanation_engine import generate_explanations
 from app.services.recommendation_engine import generate_recommendation
+from app.services.velocity_engine import check_velocity
 from app.core.database import get_db
+
 
 router = APIRouter(
     prefix="/api/transactions",
     tags=["Transactions"]
 )
 
+
 @router.post("/analyze", response_model=RiskResponse)
-def analyze_transaction(transaction: TransactionRequest, db: Database = Depends(get_db)):
-    
+def analyze_transaction(
+    transaction: TransactionRequest,
+    db: Database = Depends(get_db)
+):
+
     # 1. Fetch user profile from MongoDB
     collection = db["profiles"]
     user_data = collection.find_one({"user_id": transaction.user_id})
 
-    # If the user doesn't exist, we can throw an error or handle it. 
     if not user_data:
-        raise HTTPException(status_code=404, detail="User profile not found in database.")
+        raise HTTPException(
+            status_code=404,
+            detail="User profile not found in database."
+        )
 
-    # Convert the raw MongoDB dictionary into your Pydantic UserProfile schema
+    # Convert MongoDB document into Pydantic profile
     profile = UserProfile(**user_data)
 
-    # 2. Calculate risk
+    # 2. Calculate base risk
     risk_result = calculate_risk(
         transaction,
         profile
     )
 
-    # 3. Generate explanations
+    # 3. Check transaction velocity
+    velocity_result = check_velocity(
+        transaction,
+        db
+    )
+
+    # 4. Add velocity impact to risk score
+    if velocity_result["triggered"]:
+        risk_result["risk_score"] += velocity_result["impact"]
+
+    risk_result["risk_score"] = min(
+        risk_result["risk_score"],
+        100
+    )
+
+    # Recalculate risk level after velocity adjustment
+    if risk_result["risk_score"] <= 30:
+        risk_result["risk_level"] = "LOW"
+    elif risk_result["risk_score"] <= 60:
+        risk_result["risk_level"] = "MEDIUM"
+    else:
+        risk_result["risk_level"] = "HIGH"
+
+    # Add velocity signal if triggered
+    if velocity_result["triggered"]:
+        risk_result["signals"].append({
+            "signal": "velocity_anomaly",
+            "impact": velocity_result["impact"],
+            "message": velocity_result["message"]
+        })
+
+    # 5. Generate explanations
     reasons = generate_explanations(
         risk_result["signals"]
     )
 
-    # 4. Generate recommendation
+    # 6. Generate recommendation
     recommended_action = generate_recommendation(
         risk_result["risk_level"],
         risk_result["signals"]
     )
 
-    # 5. Return final response
+    # 7. Save transaction to MongoDB
+    transaction_data = {
+        "user_id": transaction.user_id,
+        "amount": transaction.amount,
+        "beneficiary_id": transaction.beneficiary_id,
+        "beneficiary_name": transaction.beneficiary_name,
+        "transaction_hour": transaction.transaction_hour,
+        "device_id": transaction.device_id,
+        "failed_attempts": transaction.failed_attempts,
+        "risk_score": risk_result["risk_score"],
+        "risk_level": risk_result["risk_level"],
+        "reasons": reasons,
+        "recommended_action": recommended_action,
+        "timestamp": datetime.now(timezone.utc)
+    }
+
+    db["transactions"].insert_one(transaction_data)
+
+    # 8. Return final response
     return RiskResponse(
         transaction=TransactionData(
             user_id=transaction.user_id,
@@ -62,3 +121,25 @@ def analyze_transaction(transaction: TransactionRequest, db: Database = Depends(
         reasons=reasons,
         recommended_action=recommended_action
     )
+
+
+@router.get("/{user_id}")
+def get_transaction_history(
+    user_id: str,
+    db: Database = Depends(get_db)
+):
+
+    transactions = list(
+        db["transactions"]
+        .find(
+            {"user_id": user_id},
+            {"_id": 0}
+        )
+        .sort("timestamp", -1)
+    )
+
+    return {
+        "user_id": user_id,
+        "count": len(transactions),
+        "transactions": transactions
+    }
