@@ -20,9 +20,16 @@ def check_velocity(
         }
     })
 
+    triggered = count >= threshold
+
     return {
         "count": count,
         "window_minutes": window_minutes,
         "threshold": threshold,
-        "triggered": count >= threshold
+        "triggered": triggered,
+        "impact": 20 if triggered else 0,
+        "message": (
+            f"{count} transactions were detected within "
+            f"{window_minutes} minutes."
+        )
     }

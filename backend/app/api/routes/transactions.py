@@ -47,9 +47,9 @@ def analyze_transaction(
 
     # 3. Check transaction velocity
     velocity_result = check_velocity(
-        transaction,
-        db
-    )
+    db,
+    transaction.user_id
+)
 
     # 4. Add velocity impact to risk score
     if velocity_result["triggered"]:
