@@ -111,6 +111,17 @@ def analyze_transaction(
 
     db["transactions"].insert_one(transaction_data)
 
+        # 7b. Update user's known beneficiaries and devices
+    db["profiles"].update_one(
+        {"user_id": transaction.user_id},
+        {
+            "$addToSet": {
+                "known_beneficiaries": transaction.beneficiary_id,
+                "known_devices": transaction.device_id
+            }
+        }
+    )
+
     # 8. Return final response
     return RiskResponse(
         transaction=TransactionData(
