@@ -32,7 +32,7 @@ function updateDashboardTable(transactions) {
     row.innerHTML = 
       '<td>' + tx.transaction_id + '</td>' +
       '<td>' + tx.beneficiary_id + '</td>' +
-      '<td>$' + tx.amount + '</td>' +
+      '<td>₹' + tx.amount + '</td>' +
       '<td><span class="status ' + tx.risk_level.toLowerCase() + '">' + tx.risk_level + '</span></td>';
 
     // Add row to the table body
