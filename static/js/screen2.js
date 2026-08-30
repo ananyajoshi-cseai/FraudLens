@@ -38,7 +38,7 @@ function setupFormSubmit() {
       amount: parseFloat(document.getElementById('amount').value),
       beneficiary_id: document.getElementById('beneficiary').value,
       beneficiary_name: "Test Beneficiary",
-      transaction_hour: 12,
+      transaction_hour: parseInt(document.getElementById('transaction-time').value),
       device_id: selectedDevice === "known" ? "DEV-OLD-01" : selectedDevice,
       failed_attempts: parseInt(document.getElementById('failed-attempts').value)
     };
