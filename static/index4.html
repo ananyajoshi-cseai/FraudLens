@@ -13,10 +13,10 @@
     <strong>PayGuard</strong> <span class="badge">v2.4</span>
   </div>
   <nav class="nav-links">
-  <a href="index.html">Dashboard</a>
-  <a href="index2.html">Simulator</a>
-  <a href="index3.html">Results</a>
-  <a href="index4.html" class="active">Audit Log</a>
+    <a href="/">Dashboard</a>
+    <a href="/screen2">Simulator</a>
+    <a href="/screen3">Results</a>
+    <a href="/screen4" class="active">Audit Log</a>
 </nav>
   <div class="user-profile">
     <input type="text" placeholder="Search transactions..." class="search-input">
@@ -36,7 +36,7 @@
     <div class="card filter-bar">
       <div class="filter-group">
         <label class="card-title">Filter by Risk</label>
-        <select class="filter-select">
+        <select class="filter-select" id="risk-filter">
           <option value="all">All Risk Levels</option>
           <option value="high">High Risk (71-100)</option>
           <option value="medium">Medium Risk (31-70)</option>
@@ -45,7 +45,7 @@
       </div>
       <div class="filter-group">
         <label class="card-title">Date Range</label>
-        <input type="date" class="search-input" value="2026-08-22">
+       <input type="date" class="search-input" id="date-filter" value="">
       </div>
       <div class="filter-group">
         <label class="card-title">Search ID / Beneficiary</label>
