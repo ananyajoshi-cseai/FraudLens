@@ -15,6 +15,23 @@ FraudLens analyzes digital payment transactions in real time, identifies suspici
 
 > **Don't just tell users that a transaction is risky. Explain WHY it is risky and WHAT they should do next.**
 
+### 🎥 System Preview
+
+![Main Dashboard](dashboard1.png)
+
+*Overview of scan activity, transaction volume, and threat breakdown.*
+
+![Payment Simulator](dashboard2.png)
+
+*Interactive transaction simulator with predefined demo scenarios.*
+
+![Analysis Results](dashboard3.png)
+
+*Real-time risk scoring, triggered rules, and human-readable explanations.*
+
+![Audit Log](dashboard4.png)
+
+*Historical review of evaluated payment transactions and their risk levels.*
 ---
 
 ## 📑 Table of Contents
