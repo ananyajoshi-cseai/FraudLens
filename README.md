@@ -454,13 +454,6 @@ Otherwise, open the relevant HTML page using the frontend serving method configu
 
 ---
 
-## 🎥 Demo & Screenshots
-
-> 🚧 **Demo video coming soon.**
-
-
----
-
 ## 🚧 Current Scope & Limitations
 
 FraudLens is currently a prototype designed for demonstration purposes.
