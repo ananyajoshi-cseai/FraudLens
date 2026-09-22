@@ -1,6 +1,6 @@
 # 🛡️ FraudLens
 
-### Explainable Real-Time Fraud Risk Detection for Digital Payments
+### Explainable Real-Time Fraud Risk Detection for Digital Payments!
 
 🚀 **Current Status:** MVP deployed and live; prototype refinement and testing in progress
 
