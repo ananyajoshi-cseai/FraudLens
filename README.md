@@ -59,7 +59,7 @@ FraudLens analyzes digital payment transactions in real time, identifies suspici
 
 ## 🛑 Problem
 
-Digital payment fraud happens in seconds. Traditional security systems often issue generic, black-box warnings that leave users confused.
+Digital payment fraud happens in seconds. Traditional security systems often issue generic, black-box warnings that leave users confused
 
 This can lead to:
 
