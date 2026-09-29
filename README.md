@@ -13,9 +13,9 @@
 
 FraudLens analyzes digital payment transactions in real time, identifies suspicious behavioral signals, calculates a transparent risk score, explicitly explains **why** a transaction was flagged, and provides actionable guidance to the user.
 
-> **Don't just tell users that a transaction is risky. Explain WHY it is risky and WHAT they should do next.**
+> **Don't just tell users that a transaction is risky. Explain WHY it is risky and WHAT they should do next**
 
-### 🎥 System Preview
+###  System Preview
 
 ![Main Dashboard](dashboard1.png)
 
