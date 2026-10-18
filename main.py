@@ -4,7 +4,7 @@ from fastapi.responses import FileResponse
 
 app = FastAPI()
 
-# Mount the static directory
+# Mount static directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
