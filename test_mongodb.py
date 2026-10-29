@@ -13,7 +13,7 @@ print("Database:", database_name)
 try:
     client = MongoClient(uri, serverSelectionTimeoutMS=5000)
 
-    # Test connection
+    # Test the connection
     client.admin.command("ping")
 
     print("MongoDB connection successful!")
