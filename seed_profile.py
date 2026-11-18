@@ -33,7 +33,7 @@ result = profiles.update_one(
     {"$set": profile},
     upsert=True
 )
-
+#printing results
 print("Profile inserted/updated successfully.")
 print("Matched:", result.matched_count)
 print("Modified:", result.modified_count)
